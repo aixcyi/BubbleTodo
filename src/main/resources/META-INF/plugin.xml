@@ -4,6 +4,7 @@
     <id>cn.aixcyi.plugin.BubbleTodo</id>
     <name>BubbleTodo</name>
     <vendor email="75880483+aixcyi@users.noreply.github.com" url="https://github.com/aixcyi">aixcyi</vendor>
+    <resource-bundle>messages.BubbleTodoBundle</resource-bundle>
 
     <!-- 插件兼容性要求：https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
