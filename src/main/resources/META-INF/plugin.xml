@@ -11,6 +11,12 @@
 
     <!-- 插件定义的扩展点：https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
+        <toolWindow
+                factoryClass="cn.aixcyi.plugin.bubbletodo.ui.BubblesToolWindowFactory"
+                id="BubbleTodoList"
+                icon="AllIcons.Toolwindows.ToolWindowVariableView"
+                anchor="right"
+        />
     </extensions>
 
 </idea-plugin>
