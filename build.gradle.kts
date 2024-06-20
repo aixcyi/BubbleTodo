@@ -41,6 +41,13 @@ tasks {
         kotlinOptions.jvmTarget = "17"
     }
 
+    runIde {
+        jvmArgs = listOf(
+            // "-Duser.language=en_US",
+            // "-XX:+UnlockDiagnosticVMOptions",
+        )
+    }
+
     patchPluginXml {
         sinceBuild.set("222")
         untilBuild.set("242.*")
