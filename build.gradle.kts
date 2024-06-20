@@ -15,14 +15,14 @@ repositories {
     mavenCentral()
 }
 
-// 配置 Gradle IntelliJ Plugin
+// Gradle IntelliJ Plugin
 // https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
     version.set("PC-2022.2.5")
     plugins.set(listOf(/* Plugin Dependencies */))
 }
 
-// 配置 Gradle Changelog Plugin
+// Gradle Changelog Plugin
 // https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
     path.set(file("CHANGELOG.md").canonicalPath)
@@ -30,6 +30,7 @@ changelog {
     headerParserRegex.set("""v(\d+.\d+.\d+)""".toRegex())
 }
 
+// https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#tasks
 tasks {
     // JVM 兼容版本
     withType<JavaCompile> {
@@ -40,13 +41,15 @@ tasks {
         kotlinOptions.jvmTarget = "17"
     }
 
+    initializeIntelliJPlugin {
+        // selfUpdateCheck = false
+    }
     runIde {
         jvmArgs = listOf(
             // "-Duser.language=en_US",
             // "-XX:+UnlockDiagnosticVMOptions",
         )
     }
-
     patchPluginXml {
         sinceBuild.set("222")
         untilBuild.set("242.*")
@@ -58,13 +61,11 @@ tasks {
             )
         })
     }
-
     signPlugin {
         certificateChainFile.set(file("./.secret/chain.crt"))
         privateKeyFile.set(file("./.secret/private.pem"))
         password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
     }
-
     publishPlugin {
         token.set(System.getenv("PUBLISH_TOKEN"))
     }
