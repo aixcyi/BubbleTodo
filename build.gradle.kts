@@ -1,5 +1,4 @@
 import org.jetbrains.changelog.Changelog
-import org.jetbrains.changelog.date
 
 plugins {
     id("java")
@@ -27,7 +26,7 @@ intellij {
 // https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
     path.set(file("CHANGELOG.md").canonicalPath)
-    header = provider { "v${version.get()}，${date("yyyy-mm-dd")}" }
+    header = provider { "v${version.get()}" }
     headerParserRegex.set("""v(\d+.\d+.\d+)""".toRegex())
 }
 
