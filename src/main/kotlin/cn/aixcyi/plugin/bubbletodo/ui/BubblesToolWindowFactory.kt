@@ -20,6 +20,6 @@ import com.intellij.openapi.wm.ToolWindowFactory
 class BubblesToolWindowFactory : ToolWindowFactory {
 
     override fun createToolWindowContent(project: Project, window: ToolWindow) {
-        TodoContent(project, window)
+        BubbleContent(project, window)
     }
 }
