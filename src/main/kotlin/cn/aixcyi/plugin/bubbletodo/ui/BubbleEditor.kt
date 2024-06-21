@@ -1,7 +1,7 @@
 package cn.aixcyi.plugin.bubbletodo.ui
 
 import cn.aixcyi.plugin.bubbletodo.eitity.Bubble
-import cn.aixcyi.plugin.bubbletodo.utils.IOUtil.message
+import cn.aixcyi.plugin.bubbletodo.utils.BundleUtil.message
 import cn.aixcyi.plugin.bubbletodo.utils.hFill
 import com.intellij.lang.html.HTMLLanguage
 import com.intellij.openapi.editor.colors.EditorColorsManager

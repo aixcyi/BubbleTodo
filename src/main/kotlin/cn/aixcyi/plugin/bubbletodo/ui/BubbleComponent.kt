@@ -2,6 +2,7 @@ package cn.aixcyi.plugin.bubbletodo.ui
 
 import cn.aixcyi.plugin.bubbletodo.eitity.Bubble
 import cn.aixcyi.plugin.bubbletodo.utils.MeowUiUtil.isUsingNewUI
+import cn.aixcyi.plugin.bubbletodo.utils.exec
 import com.intellij.icons.AllIcons
 import com.intellij.notification.impl.NotificationsManagerImpl
 import com.intellij.notification.impl.ui.NotificationsUtil
@@ -57,7 +58,7 @@ class BubbleComponent(val bubble: Bubble) : JBPanel<BubbleComponent>() {
          *
          * @see [com.intellij.notification.impl.NotificationComponent.NEW_DEFAULT_COLOR]
          */
-        val BG_DONE: JBColor
+        val BG_DONE
             get() = if (isUsingNewUI())
                 JBUI.CurrentTheme.ToolWindow.background() as JBColor
             else
@@ -110,9 +111,8 @@ class BubbleComponent(val bubble: Bubble) : JBPanel<BubbleComponent>() {
         myDataArea.addHyperlinkListener { e: HyperlinkEvent ->
             if (e.eventType == HyperlinkEvent.EventType.ACTIVATED) {
                 if (Desktop.isDesktopSupported()) {
-                    try {
+                    exec {
                         Desktop.getDesktop().browse(e.url.toURI())
-                    } catch (_: Exception) {
                     }
                 }
             }

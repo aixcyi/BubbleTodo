@@ -3,10 +3,11 @@ package cn.aixcyi.plugin.bubbletodo.eitity
 import cn.aixcyi.plugin.bubbletodo.AppIcons
 import org.apache.commons.lang.RandomStringUtils
 import java.time.ZonedDateTime
-import javax.swing.Icon
 
 /**
- * 待办／便笺／提醒。
+ * 待办／便笺／备忘／提醒。
+ *
+ * Todo / Note / Memo / Notification
  *
  * @param id 标识符，用于全局标识一个泡泡。值应当由 [Bubble.randomUniqueID] 生成。
  * @param content 带格式的文本内容。
@@ -47,15 +48,15 @@ data class Bubble(
      *
      * @param allowShowStarIcon 是否允许显示 “星标” 图标。
      */
-    fun getIcon(allowShowStarIcon: Boolean = true): Icon {
-        if (this.starred && allowShowStarIcon)
-            return AppIcons.Bubble.Starred
-        if (this.urgent && this.important)
-            return AppIcons.Bubble.UrgentAndImportant
-        if (this.urgent)
-            return AppIcons.Bubble.Urgent
-        if (this.important)
-            return AppIcons.Bubble.Important
-        return AppIcons.Bubble.Normal
-    }
+    fun getIcon(allowShowStarIcon: Boolean = true) =
+        if (allowShowStarIcon && this.starred)
+            AppIcons.Bubble.Starred
+        else if (this.urgent && this.important)
+            AppIcons.Bubble.UrgentAndImportant
+        else if (this.urgent)
+            AppIcons.Bubble.Urgent
+        else if (this.important)
+            AppIcons.Bubble.Important
+        else
+            AppIcons.Bubble.Normal
 }

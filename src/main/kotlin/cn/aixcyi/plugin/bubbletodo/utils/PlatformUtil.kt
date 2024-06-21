@@ -2,11 +2,18 @@ package cn.aixcyi.plugin.bubbletodo.utils
 
 import com.intellij.openapi.actionSystem.ActionManager
 import com.intellij.openapi.actionSystem.AnAction
-import com.intellij.openapi.diagnostic.logger
+import com.intellij.openapi.diagnostic.thisLogger
 import com.intellij.openapi.project.DumbAwareAction
 import javax.swing.JComponent
 
-object PlatformUtil
+/**
+ * 平台相关的兼容函数和定制工具。
+ *
+ * @author <a href="https://github.com/aixcyi">砹小翼</a>
+ */
+object PlatformUtil {
+    val LOGGER = thisLogger()
+}
 
 /**
  * 将源 [AnAction] 的快捷键复制到自身。
@@ -23,7 +30,7 @@ fun DumbAwareAction.merge(sourceActionId: String, component: JComponent?): DumbA
         copyShortcutFrom(this)
         registerCustomShortcutSet(this.shortcutSet, component)
     } ?: run {
-        logger<PlatformUtil>().debug("source action $sourceActionId does not exist.")
+        PlatformUtil.LOGGER.debug("source action $sourceActionId does not exist.")
     }
     return this
 }
