@@ -32,7 +32,7 @@ object MeowUiUtil {
 }
 
 /**
- * 让 [Cell] 填满当前的布局单元格（如果不经设置，会默认为左对齐）。
+ * 让 [Cell] 横向填满当前的布局单元格。
  *
  * 该函数是为了同时兼容以下两种写法：
  *
@@ -49,6 +49,28 @@ fun <T : JComponent> Cell<T>.hFill(): Cell<T> {
         val klass = Class.forName("com.intellij.ui.dsl.gridLayout.HorizontalAlign")
         val param = klass.enumConstants.map { it as Enum<*> }.first { it.name == "FILL" }
         javaClass.getMethod("horizontalAlign", klass).invoke(this, param)
+    }
+    return this
+}
+
+/**
+ * 让 [Cell] 纵向填满当前的布局单元格。
+ *
+ * 该函数是为了同时兼容以下两种写法：
+ *
+ * - `align(com.intellij.ui.dsl.builder.AlignY.FILL)`
+ * - `verticalAlign(com.intellij.ui.dsl.gridLayout.VerticalAlign.FILL)`
+ */
+fun <T : JComponent> Cell<T>.vFill(): Cell<T> {
+    exec {
+        val klass = Class.forName("com.intellij.ui.dsl.builder.Align")
+        val param = Class.forName("com.intellij.ui.dsl.builder.AlignY")
+            .kotlin.sealedSubclasses.first { it.simpleName == "FILL" }.objectInstance
+        javaClass.getMethod("align", klass).invoke(this, param)
+    }?.exec {
+        val klass = Class.forName("com.intellij.ui.dsl.gridLayout.VerticalAlign")
+        val param = klass.enumConstants.map { it as Enum<*> }.first { it.name == "FILL" }
+        javaClass.getMethod("verticalAlign", klass).invoke(this, param)
     }
     return this
 }
