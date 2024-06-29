@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.aixcyi.plugin.bubbletodo.mapper.BubbleMapper">
+
+    <resultMap id="BubbleResultMap" type="cn.aixcyi.plugin.bubbletodo.entity.Bubble">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="LONGNVARCHAR"/>
+        <result column="done" property="done" javaType="boolean" jdbcType="BIT"/>
+        <result column="starred" property="starred" javaType="boolean" jdbcType="BIT"/>
+        <result column="urgent" property="urgent" javaType="boolean" jdbcType="BIT"/>
+        <result column="important" property="important" javaType="boolean" jdbcType="BIT"/>
+
+    </resultMap>
+
+    <sql id="BubbleResultMap">id,content,done,starred,urgent,important</sql>
+
+
+    <select id="selectById" resultMap="BubbleResultMap">
+        select
+        <include refid="BubbleResultMap"/>
+        from bubble where id = #{id}
+    </select>
+
+    <insert id="save"
+            useGeneratedKeys="true"
+            keyProperty="id"
+            parameterType="cn.aixcyi.plugin.bubbletodo.entity.Bubble">
+        INSERT INTO bubble (id,content,done,starred,urgent,important)
+        value(#{e.id},#{e.content},#{e.done},#{e.starred},#{e.urgent},#{e.important})
+    </insert>
+
+
+    <update id="updateById" parameterType="cn.aixcyi.plugin.bubbletodo.entity.Bubble">
+        UPDATE bubble
+        <set>
+            <if test="e.content!= null">
+                content = #{e.content},
+            </if>
+            <if test="e.done != null">
+                done = #{e.done},
+            </if>
+            <if test="e.starred != null">
+                starred = #{e.starred},
+            </if>
+            <if test="e.urgent != null">
+                urgent = #{e.urgent},
+            </if>
+            <if test="e.important != null">
+                important = #{e.important}
+            </if>
+        </set>
+        where id = #{e.id}
+    </update>
+
+    <delete id="deleteById" parameterType="string">
+        DELETE FROM bubble where id =#{id}
+    </delete>
+</mapper>

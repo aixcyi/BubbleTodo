@@ -1,6 +1,6 @@
 package cn.aixcyi.plugin.bubbletodo.ui
 
-import cn.aixcyi.plugin.bubbletodo.eitity.Bubble
+import cn.aixcyi.plugin.bubbletodo.entity.Bubble
 import cn.aixcyi.plugin.bubbletodo.utils.MeowUiUtil.isUsingNewUI
 import cn.aixcyi.plugin.bubbletodo.utils.exec
 import com.intellij.icons.AllIcons

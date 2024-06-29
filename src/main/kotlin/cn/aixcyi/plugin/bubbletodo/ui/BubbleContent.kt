@@ -1,6 +1,6 @@
 package cn.aixcyi.plugin.bubbletodo.ui
 
-import cn.aixcyi.plugin.bubbletodo.eitity.Bubble
+import cn.aixcyi.plugin.bubbletodo.entity.Bubble
 import cn.aixcyi.plugin.bubbletodo.utils.BundleUtil.message
 import cn.aixcyi.plugin.bubbletodo.utils.merge
 import com.intellij.icons.AllIcons

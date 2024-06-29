@@ -1,4 +1,4 @@
-package cn.aixcyi.plugin.bubbletodo.eitity
+package cn.aixcyi.plugin.bubbletodo.entity
 
 import cn.aixcyi.plugin.bubbletodo.AppIcons
 import org.apache.commons.lang.RandomStringUtils

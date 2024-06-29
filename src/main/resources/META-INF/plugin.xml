@@ -17,6 +17,7 @@
                 icon="AllIcons.Toolwindows.ToolWindowVariableView"
                 anchor="right"
         />
+        <postStartupActivity implementation="cn.aixcyi.plugin.bubbletodo.utils.SQLOperation"/>
     </extensions>
 
 </idea-plugin>
