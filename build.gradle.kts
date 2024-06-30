@@ -70,3 +70,12 @@ tasks {
         token.set(System.getenv("PUBLISH_TOKEN"))
     }
 }
+
+dependencies{
+    // https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
+    implementation("org.xerial:sqlite-jdbc:3.46.0.0")
+
+    // https://mvnrepository.com/artifact/org.mybatis/mybatis
+    implementation("org.mybatis:mybatis:3.5.16")
+
+}
