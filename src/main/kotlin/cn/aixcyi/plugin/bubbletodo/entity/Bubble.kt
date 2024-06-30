@@ -41,6 +41,26 @@ data class Bubble(
          */
         fun randomUniqueID(): String =
             ZonedDateTime.now().toEpochSecond().toString() + "." + RandomStringUtils.randomAlphanumeric(20)
+
+
+        fun sql(): String {
+            return """
+             CREATE TABLE IF NOT EXISTS `bubble`(
+               id varchar(255) NOT NULL PRIMARY KEY,
+               content longtext,
+               done bit,
+               starred bit,
+               urgent bit,
+               important bit
+           );
+        """.trimIndent()
+        }
+
+        fun createIndexSQL():String {
+            return """
+                 CREATE INDEX `id` on `bubble` (id)
+            """.trimIndent()
+        }
     }
 
     /**

@@ -1,6 +1,9 @@
 package cn.aixcyi.plugin.bubbletodo.ui
 
 import cn.aixcyi.plugin.bubbletodo.entity.Bubble
+import cn.aixcyi.plugin.bubbletodo.service.BubbleService
+import cn.aixcyi.plugin.bubbletodo.service.impl.BubbleServiceImpl
+
 import cn.aixcyi.plugin.bubbletodo.utils.BundleUtil.message
 import cn.aixcyi.plugin.bubbletodo.utils.merge
 import com.intellij.icons.AllIcons
@@ -8,6 +11,7 @@ import com.intellij.openapi.actionSystem.ActionManager
 import com.intellij.openapi.actionSystem.ActionPlaces
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.DefaultActionGroup
+import com.intellij.openapi.components.service
 import com.intellij.openapi.project.DumbAwareAction
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
@@ -42,6 +46,7 @@ class BubbleContent(val project: Project, toolWindow: ToolWindow) {
     private val myBubbleList = JBPanelWithEmptyText(VerticalLayout(JBUI.scale(10)))
     private val myEventHandler = ComponentEventHandler()
     private var isScrollShown = false
+    private var bubbleService = service<BubbleService>()
 
     init {
         // -------- 工具栏 --------
@@ -102,6 +107,7 @@ class BubbleContent(val project: Project, toolWindow: ToolWindow) {
      * - 不要在循环中调用这个方法。因为它应当被优化。
      */
     fun add(bubble: Bubble) {
+        bubbleService.save(bubble)
         val component = BubbleComponent(bubble)
         myBubbleList.add(component)
         myEventHandler.add(component)

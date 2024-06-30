@@ -5,16 +5,18 @@ import org.apache.ibatis.annotations.Mapper
 import org.apache.ibatis.annotations.Param
 import org.apache.ibatis.annotations.Select
 
-@Mapper
+
 interface BubbleMapper {
 
 
     fun selectById(@Param("id") id: String): Bubble;
 
-    fun save(@Param("e") e: Bubble): String
+    fun save(@Param("e") e: Bubble): Int
 
     fun updateById(@Param("e") e: Bubble): Int
 
 
     fun deleteById(@Param("id") id: String): Int
+
+    fun query(@Param("e") e: Bubble): List<Bubble>
 }

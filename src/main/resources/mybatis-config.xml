@@ -5,16 +5,20 @@
 
 
 <configuration>
+    <settings>
+        <setting name="logImpl" value="slf4j" />
+    </settings>
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="UNPOOLED">
                 <property name="driver" value="org.sqlite.JDBC"/>
-                <property name="url" value="jdbc:sqlite::resource:bubbletodo.db"/>
+                <property name="url" value="%{jdbc_link}%"/> <!-- 在 SQLOperation.kt当中做替换-->
             </dataSource>
         </environment>
     </environments>
     <mappers>
-        <mapper class="cn.aixcyi.plugin.bubbletodo.mapper.BubbleMapper"/>
+        <mapper resource="mapper/BubbleMapper.xml"/>
     </mappers>
+
 </configuration>

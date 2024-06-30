@@ -8,7 +8,7 @@ import cn.aixcyi.plugin.bubbletodo.utils.MyBatisUtil
 import com.intellij.openapi.components.Service
 
 @Service(value = [Service.Level.APP])
-class BubbleServiceImpl : BubbleService {
+internal class BubbleServiceImpl : BubbleService {
 
 
     override fun findById(id: String): Bubble? {
@@ -23,22 +23,28 @@ class BubbleServiceImpl : BubbleService {
     override fun save(bubble: Bubble): String? {
         var id: String? = null;
         MyBatisUtil.execute(BubbleMapper::class.java) { mapper ->
-            id = mapper.save(bubble)
-
+            mapper.save(bubble)
+            id = bubble.id
         }
         return id;
     }
 
 
-    override fun updateById(bubble:Bubble): Boolean{
-        var result:Boolean = false
-        MyBatisUtil.execute(BubbleMapper::class.java){
-            mapper -> result = mapper.updateById(bubble) >= 1;
+    override fun updateById(bubble: Bubble): Boolean {
+        var result: Boolean = false
+        MyBatisUtil.execute(BubbleMapper::class.java) { mapper ->
+            result = mapper.updateById(bubble) >= 1;
         }
         return result;
     }
 
 
-
+    override fun query(bubble:Bubble): List<Bubble>?{
+        var result:List<Bubble>? =null
+        MyBatisUtil.execute(BubbleMapper::class.java) { mapper ->
+            result = mapper.query(bubble);
+        }
+       return result
+    }
 
 }

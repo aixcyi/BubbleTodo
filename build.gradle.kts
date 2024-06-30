@@ -73,9 +73,12 @@ tasks {
 
 dependencies{
     // https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
-    implementation("org.xerial:sqlite-jdbc:3.46.0.0")
+    implementation("org.xerial:sqlite-jdbc:3.21.0.1")
 
     // https://mvnrepository.com/artifact/org.mybatis/mybatis
-    implementation("org.mybatis:mybatis:3.5.16")
+    implementation("org.mybatis:mybatis:3.5.7"){
+        exclude(group = "org.slf4j", module = "slf4j-api")
+    }
+    implementation("org.slf4j:slf4j-nop:1.7.30")
 
 }

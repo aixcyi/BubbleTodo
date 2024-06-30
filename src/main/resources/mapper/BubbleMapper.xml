@@ -25,11 +25,9 @@
     </select>
 
     <insert id="save"
-            useGeneratedKeys="true"
-            keyProperty="id"
             parameterType="cn.aixcyi.plugin.bubbletodo.entity.Bubble">
-        INSERT INTO bubble (id,content,done,starred,urgent,important)
-        value(#{e.id},#{e.content},#{e.done},#{e.starred},#{e.urgent},#{e.important})
+        INSERT INTO bubble (<include refid="BubbleResultMap"/>)
+        values(#{e.id},#{e.content},#{e.done},#{e.starred},#{e.urgent},#{e.important})
     </insert>
 
 
@@ -58,4 +56,30 @@
     <delete id="deleteById" parameterType="string">
         DELETE FROM bubble where id =#{id}
     </delete>
+
+
+    <select id="query" parameterType="cn.aixcyi.plugin.bubbletodo.entity.Bubble">
+        SELECT <include refid="BubbleResultMap"/>
+        FROM bubble
+        <where>
+            <if test="e.id != null">
+                and id = #{e.id}
+            </if>
+            <if test="e.content != null">
+                and content = #{content}
+            </if>
+            <if test="e.done != null">
+                and done = #{done}
+            </if>
+            <if test="e.starred != null">
+                and starred = #{starred}
+            </if>
+            <if test="e.urgent != null">
+                and urgent = #{e.urgent}
+            </if>
+            <if test="e.important != null">
+                and important != null
+            </if>
+        </where>
+    </select>
 </mapper>
