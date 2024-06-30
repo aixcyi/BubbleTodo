@@ -25,7 +25,6 @@ import java.awt.event.ContainerAdapter
 import java.awt.event.ContainerEvent
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
-import java.util.function.Consumer
 import javax.swing.JPanel
 import javax.swing.ScrollPaneConstants
 
@@ -109,12 +108,12 @@ class BubbleContent(val project: Project, toolWindow: ToolWindow) {
     }
 
     /**
-     * 枚举列表中的 [BubbleComponent] 并执行 [f]。
+     * 枚举列表中的 [BubbleComponent] 并执行函数 [f]。
      */
-    private fun iterateComponents(f: Consumer<BubbleComponent>) {
+    private fun iterateComponents(f: (BubbleComponent) -> Unit) {
         val count = myBubbleList.componentCount
         for (i in 0 until count) {
-            f.accept(myBubbleList.getComponent(i) as BubbleComponent)
+            f(myBubbleList.getComponent(i) as BubbleComponent)
         }
     }
 
