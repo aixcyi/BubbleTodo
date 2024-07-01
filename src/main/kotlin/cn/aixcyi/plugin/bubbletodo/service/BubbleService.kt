@@ -12,4 +12,6 @@ interface BubbleService {
 
 
     fun updateById(bubble: Bubble): Boolean;
+
+    fun query(bubble:Bubble): List<Bubble>?
 }

@@ -18,6 +18,8 @@
                 anchor="right"
         />
         <postStartupActivity implementation="cn.aixcyi.plugin.bubbletodo.utils.SQLOperation"/>
+        <applicationService serviceInterface="cn.aixcyi.plugin.bubbletodo.service.BubbleService"
+                            serviceImplementation="cn.aixcyi.plugin.bubbletodo.service.impl.BubbleServiceImpl"/>
     </extensions>
 
 </idea-plugin>
